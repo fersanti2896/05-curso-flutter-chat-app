@@ -25,6 +25,14 @@ class ChatProvider extends ChangeNotifier {
     moveScrollToBottom();
   }
 
+  Future<void> heyReply() async {
+      final herMessage = await getYesNoAnswer.getAnswer();
+      messagesList.add(herMessage);
+
+      notifyListeners();
+      moveScrollToBottom();
+  }
+
   Future<void> moveScrollToBottom() async {
     await Future.delayed(const Duration(milliseconds: 100));
 
@@ -32,13 +40,5 @@ class ChatProvider extends ChangeNotifier {
         chatScrollController.position.maxScrollExtent,
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut);
-  }
-
-  Future<void> heyReply() async {
-    final herMessage = await getYesNoAnswer.getAnswer();
-    messagesList.add(herMessage);
-
-    notifyListeners();
-    moveScrollToBottom();
   }
 }
